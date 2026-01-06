@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <g fill="none" stroke="white" stroke-width="1" opacity="0.08">
+    <!-- Dumbbell -->
+    <line x1="10" y1="20" x2="30" y2="20"/>
+    <rect x="6" y="16" width="4" height="8"/>
+    <rect x="30" y="16" width="4" height="8"/>
+
+    <!-- Ball -->
+    <circle cx="60" cy="30" r="4"/>
+
+    <!-- Racket -->
+    <ellipse cx="90" cy="25" rx="5" ry="8"/>
+    <line x1="90" y1="33" x2="90" y2="45"/>
+
+    <!-- Waves -->
+    <path d="M20 70 q6 -4 12 0"/>
+    <path d="M20 76 q6 -4 12 0"/>
+
+    <!-- Skipping rope -->
+    <path d="M60 80 q10 -10 20 0"/>
+  </g>
+</svg>

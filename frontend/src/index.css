@@ -1,0 +1,60 @@
+html,
+body,
+#root {
+  height: 100%;
+  background-color: #000;
+  overflow-x: hidden;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes rectFloat1 {
+  0% { transform: translate(-10%, -10%) rotate(0deg); }
+  50% { transform: translate(30%, 20%) rotate(6deg); }
+  100% { transform: translate(-10%, -10%) rotate(0deg); }
+}
+
+@keyframes rectFloat2 {
+  0% { transform: translate(60%, 10%) rotate(0deg); }
+  50% { transform: translate(20%, 40%) rotate(-8deg); }
+  100% { transform: translate(60%, 10%) rotate(0deg); }
+}
+
+@keyframes rectFloat3 {
+  0% { transform: translate(20%, 70%) rotate(0deg); }
+  50% { transform: translate(50%, 30%) rotate(10deg); }
+  100% { transform: translate(20%, 70%) rotate(0deg); }
+}
+
+.animate-rect-1 {
+  animation: rectFloat1 18s ease-in-out infinite;
+}
+
+.animate-rect-2 {
+  animation: rectFloat2 22s ease-in-out infinite;
+}
+
+.animate-rect-3 {
+  animation: rectFloat3 26s ease-in-out infinite;
+}
