@@ -4,10 +4,10 @@ from sqlalchemy.orm import Session
 from app.db.deps import get_db
 from app.models.facility import Facility
 
-router = APIRouter()
+router = APIRouter(prefix="/facilities", tags=["Facilities"])
 
 
-@router.get("/facilities")
+@router.get("")
 def list_facilities(db: Session = Depends(get_db)):
     facilities = (
         db.query(Facility)
@@ -19,7 +19,6 @@ def list_facilities(db: Session = Depends(get_db)):
         {
             "id": f.id,
             "name": f.name,
-            "description": f.description,
         }
         for f in facilities
     ]

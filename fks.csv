@@ -1,0 +1,4 @@
+"TABLE_NAME","COLUMN_NAME","REFERENCED_TABLE_NAME","REFERENCED_COLUMN_NAME"
+"bookings","facility_id","facilities","id"
+"bookings","time_slot_id","time_slots","id"
+"time_slots","facility_id","facilities","id"

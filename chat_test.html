@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Society Booking Chat Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .chat-container {
+            width: 420px;
+            background: #020617;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 12px;
+        }
+
+        .msg {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .user {
+            text-align: right;
+            color: #38bdf8;
+        }
+
+        .bot {
+            text-align: left;
+            color: #a7f3d0;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        button {
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="messages" id="messages"></div>
+
+    <input
+        id="messageInput"
+        placeholder="Type your message..."
+        onkeydown="if(event.key==='Enter') sendMessage()"
+    />
+
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+    const API_URL = "http://127.0.0.1:8000/chat/";
+    const conversationId = "test-convo-1";
+
+    async function sendMessage() {
+        const input = document.getElementById("messageInput");
+        const text = input.value.trim();
+        if (!text) return;
+
+        addMessage(text, "user");
+        input.value = "";
+
+        try {
+            const res = await fetch(API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message: text,
+                    conversation_id: conversationId
+                })
+            });
+
+            const data = await res.json();
+            addMessage(data.reply || "No reply", "bot");
+
+        } catch (err) {
+            addMessage("Error contacting server", "bot");
+        }
+    }
+
+    function addMessage(text, sender) {
+        const messages = document.getElementById("messages");
+        const div = document.createElement("div");
+        div.className = `msg ${sender}`;
+        div.textContent = text;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+    }
+</script>
+
+</body>
+</html>

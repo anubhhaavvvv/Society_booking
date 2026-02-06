@@ -41,7 +41,7 @@ def get_facility_availability(
             (Booking.time_slot_id == TimeSlot.id)
             & (Booking.booking_date == booking_date)
             & (Booking.status == "BOOKED")
-            & (Booking.facility_id == facility_id),
+            & (Booking.facility_id == facility_id), 
         )
         .filter(
             TimeSlot.facility_id == facility_id,
